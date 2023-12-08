@@ -247,6 +247,36 @@ function changeChocolateColorAllOfxCount(chocolates, color, finalColor) {
 }
 
 //Challenge 1: Remove one chocolate of x color from the top
-
+function removeChocolateOfColor(chocolates, givenColor) {
+  for (let index = 0; index < chocolates.length; index++) {
+    if (chocolates[index] == givenColor) {
+      position = index;
+      break;
+    }
+  }
+  chocolates.splice(position, 1);
+  return chocolates;
+}
 
 //Challenge 2: Dispense 1 rainbow colored chocolate for every 3 chocolates of the same color dispensed
+
+function dispenseRainbowChocolates(chocolates) {
+  const store = {};
+
+  chocolates.forEach((chocolate) => {
+    if (chocolate in store) {
+      store[chocolate] += 1;
+    } else {
+      store[chocolate] = 1;
+    }
+  });
+
+  countOfEachChocolate = Object.values(store);
+  totalNumberOfRainbowChocolates = 0;
+  countOfEachChocolate.forEach((count) => {
+    if (count % 3 == 0) {
+      totalNumberOfRainbowChocolates += count / 3;
+    }
+  });
+  return totalNumberOfRainbowChocolates;
+}
